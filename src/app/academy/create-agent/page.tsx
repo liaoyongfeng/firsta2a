@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import AcademyHeader from '@/components/academy/AcademyHeader';
 import StepIndicator from '@/components/academy/StepIndicator';
 
 const avatarOptions = ['🤖', '⚡', '🌟', '🦊', '🐉', '🎯'];
@@ -67,7 +66,6 @@ export default function CreateAgentPage() {
 
   return (
     <div className="min-h-screen bg-zinc-50">
-      <AcademyHeader />
       <main className="mx-auto max-w-2xl px-6 py-8">
         <div className="mb-8">
           <StepIndicator

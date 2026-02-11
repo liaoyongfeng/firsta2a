@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import AcademyHeader from '@/components/academy/AcademyHeader';
 import SkillCard from '@/components/academy/SkillCard';
 import SearchFilterBar from '@/components/academy/SearchFilterBar';
 import { mockSkills } from '@/data/academy/mock-skills';
@@ -20,7 +19,6 @@ export default function SkillMarketPage() {
 
   return (
     <div className="min-h-screen bg-zinc-50">
-      <AcademyHeader />
       <main className="mx-auto max-w-6xl px-6 py-8">
         <div className="mb-6">
           <h1 className="mb-1 text-2xl font-bold text-zinc-900">技能市场</h1>

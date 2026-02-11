@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
-import AcademyHeader from '@/components/academy/AcademyHeader';
 import StarRating from '@/components/academy/StarRating';
 import { mockSkills } from '@/data/academy/mock-skills';
 import { mockReviews } from '@/data/academy/mock-skills';
@@ -109,7 +108,6 @@ export default function SkillDetailPage() {
   if (!skill) {
     return (
       <div className="min-h-screen bg-zinc-50">
-        <AcademyHeader />
         <main className="mx-auto max-w-6xl px-6 py-20 text-center">
           <p className="mb-4 text-lg text-zinc-500">未找到该技能</p>
           <Link
@@ -129,7 +127,6 @@ export default function SkillDetailPage() {
 
   return (
     <div className="min-h-screen bg-zinc-50">
-      <AcademyHeader />
       <main className="mx-auto max-w-6xl px-6 py-8">
         {/* Breadcrumb */}
         <div className="mb-6 flex items-center gap-2 text-sm text-zinc-500">

@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
-import AcademyHeader from '@/components/academy/AcademyHeader';
 import { mockSkills } from '@/data/academy/mock-skills';
 import { Capability } from '@/data/academy/types';
 import { getProtocolLabel, getProtocolColor } from '@/lib/academy/utils';
@@ -24,7 +23,6 @@ export default function SkillPlaygroundPage() {
   if (!skill) {
     return (
       <div className="min-h-screen bg-zinc-50">
-        <AcademyHeader />
         <main className="mx-auto max-w-6xl px-6 py-20 text-center">
           <p className="mb-4 text-lg text-zinc-500">未找到该技能</p>
           <Link

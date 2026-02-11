@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import AcademyHeader from '@/components/academy/AcademyHeader';
 import AgentCard from '@/components/academy/AgentCard';
 import SkillCard from '@/components/academy/SkillCard';
 import { mockAgents } from '@/data/academy/mock-agents';
@@ -25,7 +24,6 @@ export default function AcademyDashboard() {
 
   return (
     <div className="min-h-screen bg-zinc-50">
-      <AcademyHeader />
       <main className="mx-auto max-w-6xl px-6 py-8">
         {/* Welcome Banner */}
         <div className="mb-8 overflow-hidden rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 p-8 text-white">
