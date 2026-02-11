@@ -80,7 +80,7 @@ export async function GET(request: NextRequest) {
     );
 
     // 清除 oauth_state cookie
-    const response = NextResponse.redirect(new URL('/dashboard', request.url));
+    const response = NextResponse.redirect(new URL('/', request.url));
     response.cookies.delete('oauth_state');
 
     console.log('[OAuth Callback] Success! Redirecting to dashboard');

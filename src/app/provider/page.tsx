@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { clearUserRole } from '@/constants/userRoles';
 
 interface UserInfo {
   userId: string;
@@ -77,6 +78,7 @@ export default function DashboardPage() {
   };
 
   const handleLogout = async () => {
+    clearUserRole();
     await fetch('/api/auth/logout', { method: 'POST' });
     router.push('/');
   };
@@ -114,7 +116,7 @@ export default function DashboardPage() {
       <nav className="border-b border-zinc-200 bg-white">
         <div className="mx-auto max-w-4xl px-6 py-4">
           <div className="flex items-center justify-between">
-            <h1 className="text-lg font-semibold text-zinc-900">FirstA2A</h1>
+            <h1 className="text-lg font-semibold text-zinc-900">FirstA2A Provider</h1>
             <button
               onClick={handleLogout}
               className="rounded-full border border-zinc-200 px-4 py-2 text-sm font-medium text-zinc-700 transition-colors hover:bg-zinc-50"
