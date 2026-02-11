@@ -112,7 +112,7 @@ export const mockSkills: Skill[] = [
     author: '王码农',
     tags: ['Python', '编程', '代码审查'],
     version: '4.2.0',
-    protocol: 'mcp',
+    protocol: 'business',
     coverGradient: 'from-green-500 to-emerald-500',
     capabilities: [
       {
@@ -211,7 +211,7 @@ export const mockSkills: Skill[] = [
     author: '刘设计',
     tags: ['UI设计', 'UX', '配色'],
     version: '2.0.0',
-    protocol: 'mcp',
+    protocol: 'business',
     coverGradient: 'from-rose-500 to-red-500',
     capabilities: [
       {
@@ -259,7 +259,7 @@ export const mockSkills: Skill[] = [
     author: '赵客服',
     tags: ['客服', '话术', '问题解决'],
     version: '3.1.0',
-    protocol: 'api',
+    protocol: 'business',
     coverGradient: 'from-teal-500 to-green-500',
     capabilities: [
       {

@@ -51,12 +51,8 @@ function SimpleSkillCard({ skill }: { skill: Skill }) {
 export default function AcademyDashboard() {
   const agents = mockAgents;
   const recommendedSkills = mockSkills.slice(0, 6);
-  const [activeTab, setActiveTab] = useState<'agents' | 'skills'>('agents');
+  const [activeTab, setActiveTab] = useState<'agents' | 'skills' | 'business'>('agents');
 
-  const totalActiveSkills = agents.reduce(
-    (sum, a) => sum + a.acquiredSkills.filter((s) => s.status === 'active').length,
-    0
-  );
 
   // 获取所有已安装的技能（去重）
   const installedSkillIds = new Set<string>();
@@ -66,6 +62,12 @@ export default function AcademyDashboard() {
       .forEach((s) => installedSkillIds.add(s.skillId));
   });
   const installedSkills = mockSkills.filter((skill) => installedSkillIds.has(skill.id));
+
+  // mock数据，已有人脉
+  const connections = [
+    { id: "skill-3", avatar: '👨‍💻', name: '王码农', title: 'Python 代码助手', description: 'Python设计顶级专家，技术大佬，攻克过不少技术难题' },
+    { id: 'skill-5', avatar: '🎨', name: '刘设计', title: 'UI 设计顾问', description: '用户体验&视觉设计专家，擅长互联网产品设计' },
+  ];
 
   return (
     <div className="min-h-screen bg-zinc-50">
@@ -151,6 +153,20 @@ export default function AcademyDashboard() {
                 {installedSkills.length}
               </span>
             </button>
+            <button
+              onClick={() => setActiveTab('business')}
+              className={`flex items-center gap-2 px-4 py-3 text-sm font-medium transition-colors ${
+                activeTab === 'business'
+                  ? 'border-b-2 border-purple-600 text-purple-600'
+                  : 'text-zinc-500 hover:text-zinc-700'
+              }`}
+            >
+              <span className="flex h-6 w-6 items-center justify-center rounded-md bg-purple-50 text-sm">💼</span>
+              已积累人脉
+              <span className="ml-1 rounded-full bg-zinc-100 px-2 py-0.5 text-xs text-zinc-600">
+                {connections.length}
+              </span>
+            </button>
           </div>
 
           {/* 选项卡内容 */}
@@ -173,7 +189,7 @@ export default function AcademyDashboard() {
                 </Link>
               </div>
             )
-          ) : (
+          ) : activeTab === 'skills' ? (
             /* 技能列表 */
             installedSkills.length > 0 ? (
               <div className="flex gap-4 overflow-x-auto pb-2">
@@ -192,7 +208,28 @@ export default function AcademyDashboard() {
                 </Link>
               </div>
             )
-          )}
+          ) : activeTab === 'business' ? (
+            <div className="flex gap-4 overflow-x-auto pb-2">
+              {connections.map((connection) => (
+                <Link href={`/academy/skills/${connection.id}`}>
+                  <div className="group min-w-[220px] rounded-xl bg-white p-5 shadow-sm transition-all hover:shadow-md hover:-translate-y-0.5">
+                    <div className="mb-3 flex items-center gap-3">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-purple-50 text-2xl">
+                        {connection.avatar}
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-zinc-900 group-hover:text-purple-600 transition-colors line-clamp-1">
+                          {connection.name}
+                        </h3>
+                        <p className="text-xs text-zinc-400">{connection.title}</p>
+                      </div>
+                    </div>
+                    <p className="text-xs text-zinc-500 line-clamp-2">{connection.description}</p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          ) : null }
         </section>
 
         {/* Recommended Skills */}

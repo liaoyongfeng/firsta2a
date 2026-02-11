@@ -64,6 +64,7 @@ export function getProtocolLabel(protocol: string): string {
     mcp: 'MCP',
     api: 'API',
     function: 'Function',
+    business: 'Business',
   };
   return map[protocol] || protocol;
 }
@@ -73,6 +74,7 @@ export function getProtocolColor(protocol: string): string {
     mcp: 'bg-blue-100 text-blue-700',
     api: 'bg-purple-100 text-purple-700',
     function: 'bg-emerald-100 text-emerald-700',
+    business: 'bg-green-100 text-green-700',
   };
   return map[protocol] || 'bg-zinc-100 text-zinc-700';
 }

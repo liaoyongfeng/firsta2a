@@ -27,7 +27,7 @@ export interface Skill {
   tags: string[];
   capabilities: Capability[];
   version: string;
-  protocol: 'mcp' | 'api' | 'function';
+  protocol: 'mcp' | 'api' | 'function' | 'business';
   coverGradient: string;
 }
 
