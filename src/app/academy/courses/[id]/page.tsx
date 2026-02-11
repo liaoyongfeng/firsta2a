@@ -68,7 +68,6 @@ export default function SkillPlaygroundPage() {
 
   return (
     <div className="min-h-screen bg-zinc-50">
-      <AcademyHeader />
       <div className="flex">
         {/* Left Sidebar - Capability List */}
         <aside className="hidden w-72 shrink-0 border-r border-zinc-200 bg-white lg:block">

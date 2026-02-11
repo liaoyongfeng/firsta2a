@@ -211,7 +211,7 @@ export default function AcademyDashboard() {
           ) : activeTab === 'business' ? (
             <div className="flex gap-4 overflow-x-auto pb-2">
               {connections.map((connection) => (
-                <Link href={`/academy/skills/${connection.id}`}>
+                <Link href={`/academy/skills/${connection.id}`} key={connection.id}>
                   <div className="group min-w-[220px] rounded-xl bg-white p-5 shadow-sm transition-all hover:shadow-md hover:-translate-y-0.5">
                     <div className="mb-3 flex items-center gap-3">
                       <div className="flex h-12 w-12 items-center justify-center rounded-full bg-purple-50 text-2xl">

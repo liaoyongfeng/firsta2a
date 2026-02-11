@@ -41,10 +41,10 @@ export async function GET(request: NextRequest) {
     // 获取用户信息
     console.log('[OAuth Callback] Fetching user info...');
     const userInfo = await getUserInfo(tokenResponse.access_token);
-    console.log('[OAuth Callback] User info received:', { userId: userInfo.userId, name: userInfo.name });
+    console.log('[OAuth Callback] User info received:', { userId: userInfo?.userId, name: userInfo?.name });
 
     // 验证用户ID存在
-    if (!userInfo.userId) {
+    if (!userInfo?.userId) {
       console.error('[OAuth Callback] User info missing userId field:', Object.keys(userInfo));
       throw new Error('用户信息缺少 userId 字段');
     }
@@ -55,20 +55,20 @@ export async function GET(request: NextRequest) {
     // 查找或创建用户
     console.log('[OAuth Callback] Upserting user to database...');
     const user = await prisma.user.upsert({
-      where: { secondmeUserId: userInfo.userId },
+      where: { secondmeUserId: userInfo?.userId },
       update: {
-        accessToken: tokenResponse.access_token,
-        refreshToken: tokenResponse.refresh_token,
+        accessToken: tokenResponse?.access_token,
+        refreshToken: tokenResponse?.refresh_token,
         tokenExpiresAt: expiresAt,
       },
       create: {
-        secondmeUserId: userInfo.userId,
-        accessToken: tokenResponse.access_token,
-        refreshToken: tokenResponse.refresh_token,
+        secondmeUserId: userInfo?.userId,
+        accessToken: tokenResponse?.access_token,
+        refreshToken: tokenResponse?.refresh_token,
         tokenExpiresAt: expiresAt,
       },
     });
-    console.log('[OAuth Callback] User saved:', { id: user.id });
+    console.log('[OAuth Callback] User saved:', { id: user?.id });
 
     // 设置会话
     console.log('[OAuth Callback] Setting session cookie...');
