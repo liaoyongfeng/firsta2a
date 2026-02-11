@@ -3,7 +3,7 @@
 import { Suspense } from 'react';
 import Link from 'next/link';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import {
   UserRole,
   ROLE_ROUTES,
@@ -11,16 +11,7 @@ import {
   setUserRole,
   clearUserRole,
 } from '@/constants/userRoles';
-
-type AuthStatus = 'checking' | 'unauthenticated' | 'role_selection' | 'redirecting' | 'error';
-
-interface UserInfo {
-  userId: string;
-  name: string;
-  avatar: string;
-  email?: string;
-  bio?: string;
-}
+import { useUser } from '@/lib/userContext';
 
 const ERROR_MESSAGES: Record<string, string> = {
   invalid_state: '验证失败，请重试',
@@ -36,88 +27,50 @@ function getErrorMessage(error: string): string {
 function HomeContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
+  const { user, isLoading, error: userError, isAuthenticated } = useUser();
 
   const oauthError = searchParams.get('error');
-
-  const [authStatus, setAuthStatus] = useState<AuthStatus>(
-    oauthError ? 'unauthenticated' : 'checking'
-  );
   const [errorMessage, setErrorMessage] = useState<string | null>(
     oauthError ? getErrorMessage(oauthError) : null
   );
-  const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
-  const [retryCount, setRetryCount] = useState(0);
+  const [isRedirecting, setIsRedirecting] = useState(false);
 
-  // Auth check effect: runs on mount (if no oauthError) and on retry
+  // 同步 UserContext 的错误到本地显示
   useEffect(() => {
-    if (oauthError) return;
+    if (userError && !oauthError) {
+      setErrorMessage(userError);
+    }
+  }, [userError, oauthError]);
 
-    let cancelled = false;
-
-    async function checkAuth() {
-      try {
-        const res = await fetch('/api/secondme/user/info');
-        if (cancelled) return;
-
-        if (res.status === 401) {
-          clearUserRole();
-          setAuthStatus('unauthenticated');
-          return;
-        }
-
-        if (!res.ok) {
-          setAuthStatus('error');
-          setErrorMessage(`服务器错误 (${res.status})，请稍后重试`);
-          return;
-        }
-
-        const data = await res.json();
-        if (cancelled) return;
-
-        setUserInfo(data.data || null);
-
-        const role = getUserRole();
-        if (role) {
-          setAuthStatus('redirecting');
-          router.replace(ROLE_ROUTES[role]);
-        } else {
-          setAuthStatus('role_selection');
-        }
-      } catch {
-        if (cancelled) return;
-        setAuthStatus('error');
-        setErrorMessage('无法连接到服务器，请检查网络连接');
+  // 已登录且有角色时自动跳转
+  useEffect(() => {
+    if (isAuthenticated && !isRedirecting) {
+      const role = getUserRole();
+      if (role) {
+        setIsRedirecting(true);
+        router.replace(ROLE_ROUTES[role]);
       }
     }
-
-    checkAuth();
-
-    return () => {
-      cancelled = true;
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [oauthError, retryCount]);
-
-  const handleRetry = () => {
-    setAuthStatus('checking');
-    setErrorMessage(null);
-    setRetryCount((c) => c + 1);
-  };
+  }, [isAuthenticated, isRedirecting, router]);
 
   const handleRoleSelect = (role: UserRole) => {
-    setAuthStatus('redirecting');
+    setIsRedirecting(true);
     setUserRole(role);
     router.replace(ROLE_ROUTES[role]);
   };
 
+  const handleRetry = () => {
+    window.location.reload();
+  };
+
   // --- Loading / Redirecting ---
-  if (authStatus === 'checking' || authStatus === 'redirecting') {
+  if (isLoading || isRedirecting) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans">
         <div className="text-center">
           <div className="mx-auto mb-4 h-8 w-8 animate-spin rounded-full border-4 border-zinc-200 border-t-zinc-900" />
           <p className="text-sm text-zinc-600">
-            {authStatus === 'checking' ? '正在验证登录状态...' : '正在跳转...'}
+            {isRedirecting ? '正在跳转...' : '正在加载...'}
           </p>
         </div>
       </div>
@@ -125,7 +78,7 @@ function HomeContent() {
   }
 
   // --- Error ---
-  if (authStatus === 'error') {
+  if (errorMessage) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans">
         <div className="w-full max-w-md rounded-lg bg-white p-8 shadow-sm text-center">
@@ -139,64 +92,41 @@ function HomeContent() {
             >
               重试
             </button>
-            <button
-              onClick={() => {
-                setAuthStatus('unauthenticated');
-                setErrorMessage(null);
-              }}
-              className="text-sm font-medium text-zinc-500 hover:text-zinc-700"
-            >
-              返回登录
-            </button>
           </div>
         </div>
       </div>
     );
   }
 
-  // --- Unauthenticated ---
-  if (authStatus === 'unauthenticated') {
+  // --- Unauthenticated: 欢迎页面 ---
+  if (!isAuthenticated) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans">
         <main className="flex w-full max-w-2xl flex-col items-center px-6 py-20">
           <div className="flex flex-col items-center gap-8 text-center">
-            <h1 className="text-4xl font-semibold tracking-tight text-zinc-900">
-              FirstA2A
-            </h1>
-            <p className="max-w-md text-lg leading-relaxed text-zinc-600">
-              通过 SecondMe 获取你的个人信息
-            </p>
-
-            {errorMessage && (
-              <div className="w-full max-w-md rounded-lg bg-red-50 border border-red-200 px-4 py-3">
-                <p className="text-sm text-red-700">
-                  错误: {errorMessage}
-                </p>
-                {oauthError === 'invalid_state' && (
-                  <p className="mt-2 text-xs text-red-600">
-                    请确保在 SecondMe 开发者后台配置了 Redirect URI: http://localhost:3000/api/auth/callback
-                  </p>
-                )}
-              </div>
-            )}
+            <div>
+              <h1 className="mb-3 text-4xl font-bold tracking-tight text-zinc-900">
+                欢迎来到 AI魔法学院
+              </h1>
+              <p className="max-w-md text-lg leading-relaxed text-zinc-600">
+                内修技能，外挂魔法<br />
+                开启你的 AI 魔法晋级之旅
+              </p>
+            </div>
 
             <div className="flex flex-col gap-4">
               <Link
                 href="/api/auth/login"
-                className="flex h-12 items-center justify-center rounded-full bg-zinc-900 px-8 text-sm font-medium text-zinc-50 transition-colors hover:bg-zinc-800"
+                className="flex h-12 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-violet-600 to-purple-600 px-8 text-sm font-semibold text-white shadow-lg shadow-violet-200 transition-all hover:shadow-xl hover:shadow-violet-300 hover:scale-105"
               >
+                <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+                </svg>
                 使用 SecondMe 登录
               </Link>
-            </div>
-
-            <div className="mt-8 max-w-md rounded-lg bg-zinc-100 px-4 py-3 text-left">
-              <p className="text-xs font-medium text-zinc-700 mb-2">配置检查清单:</p>
-              <ul className="text-xs text-zinc-600 space-y-1">
-                <li>&#10003; Client ID 已配置</li>
-                <li>&#10003; Client Secret 已配置</li>
-                <li>&#10003; Redirect URI: http://localhost:3000/api/auth/callback</li>
-                <li className="text-amber-600">&#9888; 需要在 SecondMe 开发者后台添加上述 Redirect URI</li>
-              </ul>
+              <p className="text-xs text-zinc-400">
+                使用 SecondMe 账号快速登录，无需注册
+              </p>
             </div>
           </div>
         </main>
@@ -204,13 +134,13 @@ function HomeContent() {
     );
   }
 
-  // --- Role Selection ---
+  // --- Role Selection: 已登录但未选择角色 ---
   return (
     <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans">
       <main className="w-full max-w-2xl px-6 py-20">
         <div className="text-center mb-10">
           <h1 className="text-3xl font-semibold tracking-tight text-zinc-900 mb-3">
-            {userInfo?.name ? `欢迎，${userInfo.name}` : '欢迎回来'}
+            {user?.name ? `欢迎，${user.name}` : '欢迎回来'}
           </h1>
           <p className="text-lg text-zinc-500">
             请选择你的身份以继续
