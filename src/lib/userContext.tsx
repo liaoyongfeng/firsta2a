@@ -66,7 +66,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
   // 组件挂载时自动获取用户信息
   useEffect(() => {
     refreshUser();
-  }, [refreshUser]);
+  }, [refreshUser]);                           
 
   const setUser = useCallback((newUser: UserInfo | null) => {
     setUserState(newUser);

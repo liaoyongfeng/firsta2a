@@ -9,7 +9,6 @@ import {
   ROLE_ROUTES,
   getUserRole,
   setUserRole,
-  clearUserRole,
 } from '@/constants/userRoles';
 import { useUser } from '@/lib/userContext';
 

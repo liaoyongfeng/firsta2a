@@ -28,6 +28,9 @@ interface SoftMemory {
   }>;
 }
 
+/**
+ * 诊断
+ */
 export default function DashboardPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(true);

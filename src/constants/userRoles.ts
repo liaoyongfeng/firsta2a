@@ -4,7 +4,7 @@ export const USER_ROLE_KEY = 'firsta2a_user_role';
 
 export const ROLE_ROUTES: Record<UserRole, string> = {
   provider: '/provider',
-  consumer: '/consumer',
+  consumer: '/academy',
 };
 
 const VALID_ROLES: ReadonlySet<string> = new Set<UserRole>(['provider', 'consumer']);
