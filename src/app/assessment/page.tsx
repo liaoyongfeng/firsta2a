@@ -29,7 +29,7 @@ interface SoftMemory {
 }
 
 /**
- * 技能评估
+ * 课程咨询
  */
 export default function DashboardPage() {
   const router = useRouter();
