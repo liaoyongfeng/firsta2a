@@ -81,8 +81,8 @@ export default function AcademyDashboard() {
           >
             <div className="flex items-center justify-between">
               <div className="transition-transform duration-300 group-hover:translate-x-2">
-                <h2 className="mb-2 text-xl font-bold">课程咨询</h2>
-                <p className="text-sm text-white-100">获取专业课程建议，规划晋级路径</p>
+                <h2 className="mb-2 text-xl font-bold">学习计划私人定制</h2>
+                <p className="text-sm text-white-100">获取专业建议，规划晋级路径</p>
               </div>
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/20 text-2xl transition-all duration-100 group-hover:scale-125 group-hover:bg-white/30 group-hover:rotate-6">
                 📚
