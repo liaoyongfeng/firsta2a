@@ -113,20 +113,6 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-screen bg-zinc-50 font-sans">
-      <nav className="border-b border-zinc-200 bg-white">
-        <div className="mx-auto max-w-4xl px-6 py-4">
-          <div className="flex items-center justify-between">
-            <h1 className="text-lg font-semibold text-zinc-900">FirstA2A  Consumer</h1>
-            <button
-              onClick={handleLogout}
-              className="rounded-full border border-zinc-200 px-4 py-2 text-sm font-medium text-zinc-700 transition-colors hover:bg-zinc-50"
-            >
-              登出
-            </button>
-          </div>
-        </div>
-      </nav>
-
       <main className="mx-auto max-w-4xl px-6 py-12">
         {/* 用户信息 */}
         {userInfo && (

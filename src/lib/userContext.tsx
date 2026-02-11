@@ -8,6 +8,7 @@ export interface UserInfo {
   avatar?: string;
   email?: string;
   bio?: string;
+  selfIntroduction?: string;
 }
 
 interface UserContextType {
@@ -41,6 +42,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
             avatar: result.data.avatar,
             email: result.data.email,
             bio: result.data.bio,
+            selfIntroduction: result.data.selfIntroduction,
           });
         } else {
           setUserState(null);
