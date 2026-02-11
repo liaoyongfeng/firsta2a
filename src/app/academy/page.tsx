@@ -77,12 +77,12 @@ export default function AcademyDashboard() {
           {/* 课程咨询入口 - 轻柔上下浮动 */}
           <Link
             href="/consultation"
-            className="group relative overflow-hidden rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 p-6 text-white shadow-lg transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/30 animate-[float_3s_ease-in-out_infinite]"
+            className="group relative overflow-hidden rounded-2xl bg-gradient-to-tr from-indigo-400 to-purple-300 p-6 text-white shadow-lg transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/30 animate-[float_3s_ease-in-out_infinite]"
           >
             <div className="flex items-center justify-between">
               <div className="transition-transform duration-300 group-hover:translate-x-2">
                 <h2 className="mb-2 text-xl font-bold">课程咨询</h2>
-                <p className="text-sm text-indigo-100">获取专业课程建议，规划晋级路径</p>
+                <p className="text-sm text-white-100">获取专业课程建议，规划晋级路径</p>
               </div>
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/20 text-2xl transition-all duration-100 group-hover:scale-125 group-hover:bg-white/30 group-hover:rotate-6">
                 📚
@@ -93,12 +93,12 @@ export default function AcademyDashboard() {
           {/* 技能考核评估入口 - 轻柔摆动 */}
           <Link
             href="/assessment"
-            className="group relative overflow-hidden rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 p-6 text-white shadow-lg transition-all duration-300 hover:shadow-xl hover:shadow-emerald-500/30 animate-[float_3s_ease-in-out_infinite]"
+            className="group relative overflow-hidden rounded-2xl bg-gradient-to-l from-emerald-200 to-teal-300 p-6 text-white shadow-lg transition-all duration-300 hover:shadow-xl hover:shadow-emerald-500/30 animate-[float_3s_ease-in-out_infinite]"
           >
             <div className="flex items-center justify-between">
               <div className="transition-transform duration-300 group-hover:translate-x-2">
                 <h2 className="mb-2 text-xl font-bold">技能考核评估</h2>
-                <p className="text-sm text-emerald-100">测试你的技能水平，获取能力认证</p>
+                <p className="text-sm text-white-100">测试你的技能水平，获取能力认证</p>
               </div>
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/20 text-2xl transition-all duration-100 group-hover:scale-125 group-hover:bg-white/30">
                 🎯

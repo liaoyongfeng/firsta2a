@@ -77,8 +77,8 @@ export default function Nav() {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-white/20 bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 shadow-lg shadow-violet-200/50">
-      <div className="mx-auto flex h-24 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-white/20 bg-gradient-to-r from-violet-200 to-indigo-400 shadow-lg shadow-violet-200/50">
+      <div className="mx-auto flex h-18 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo 和站点信息 */}
         <Link href="/" className="flex items-center gap-4">
           <div className="hidden sm:block">

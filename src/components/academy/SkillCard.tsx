@@ -8,7 +8,7 @@ export default function SkillCard({ skill }: { skill: Skill }) {
     <Link href={`/academy/skills/${skill.id}`}>
       <div className="group overflow-hidden rounded-xl bg-white shadow-sm transition-all hover:shadow-md hover:-translate-y-0.5">
         <div
-          className={`relative h-36 bg-gradient-to-br ${skill.coverGradient} flex items-center justify-center`}
+          className={`relative h-36 bg-gradient-to-tr ${skill.coverGradient} flex items-center justify-center`}
         >
           <span className="text-5xl opacity-80">
             {skill.category === '写作'

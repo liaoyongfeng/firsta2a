@@ -14,7 +14,7 @@ export const mockSkills: Skill[] = [
     tags: ['文案', '营销', '创意写作'],
     version: '2.1.0',
     protocol: 'mcp',
-    coverGradient: 'from-purple-500 to-pink-500',
+    coverGradient: 'to-pink-200',
     capabilities: [
       {
         id: 'cap-1-1',
@@ -66,7 +66,7 @@ export const mockSkills: Skill[] = [
     tags: ['数据分析', '统计', '报告'],
     version: '3.0.1',
     protocol: 'mcp',
-    coverGradient: 'from-blue-500 to-cyan-500',
+    coverGradient: 'to-cyan-200',
     capabilities: [
       {
         id: 'cap-2-1',
@@ -113,7 +113,7 @@ export const mockSkills: Skill[] = [
     tags: ['Python', '编程', '代码审查'],
     version: '4.2.0',
     protocol: 'business',
-    coverGradient: 'from-green-500 to-emerald-500',
+    coverGradient: 'to-emerald-200',
     capabilities: [
       {
         id: 'cap-3-1',
@@ -173,7 +173,7 @@ export const mockSkills: Skill[] = [
     tags: ['邮件', '商务沟通', '职场'],
     version: '1.5.0',
     protocol: 'api',
-    coverGradient: 'from-amber-500 to-orange-500',
+    coverGradient: 'to-orange-100',
     capabilities: [
       {
         id: 'cap-4-1',
@@ -212,7 +212,7 @@ export const mockSkills: Skill[] = [
     tags: ['UI设计', 'UX', '配色'],
     version: '2.0.0',
     protocol: 'business',
-    coverGradient: 'from-rose-500 to-red-500',
+    coverGradient: 'to-red-200',
     capabilities: [
       {
         id: 'cap-5-1',
@@ -260,7 +260,7 @@ export const mockSkills: Skill[] = [
     tags: ['客服', '话术', '问题解决'],
     version: '3.1.0',
     protocol: 'business',
-    coverGradient: 'from-teal-500 to-green-500',
+    coverGradient: 'to-green-300',
     capabilities: [
       {
         id: 'cap-6-1',
@@ -298,7 +298,7 @@ export const mockSkills: Skill[] = [
     tags: ['项目管理', 'Agile', '甘特图'],
     version: '1.8.0',
     protocol: 'mcp',
-    coverGradient: 'from-indigo-500 to-purple-500',
+    coverGradient: 'to-purple-200',
     capabilities: [
       {
         id: 'cap-7-1',
@@ -347,7 +347,7 @@ export const mockSkills: Skill[] = [
     tags: ['SEO', '内容优化', '关键词'],
     version: '2.3.0',
     protocol: 'api',
-    coverGradient: 'from-violet-500 to-fuchsia-500',
+    coverGradient: 'to-fuchsia-200',
     capabilities: [
       {
         id: 'cap-8-1',
@@ -384,7 +384,7 @@ export const mockSkills: Skill[] = [
     tags: ['Excel', '数据处理', '公式'],
     version: '2.0.1',
     protocol: 'function',
-    coverGradient: 'from-emerald-500 to-teal-500',
+    coverGradient: 'to-teal-200',
     capabilities: [
       {
         id: 'cap-9-1',
@@ -422,7 +422,7 @@ export const mockSkills: Skill[] = [
     tags: ['创意', '头脑风暴', '思维导图'],
     version: '1.2.0',
     protocol: 'function',
-    coverGradient: 'from-yellow-500 to-amber-500',
+    coverGradient: 'to-amber-200',
     capabilities: [
       {
         id: 'cap-10-1',
@@ -460,7 +460,7 @@ export const mockSkills: Skill[] = [
     tags: ['React', 'TypeScript', '前端'],
     version: '3.0.0',
     protocol: 'mcp',
-    coverGradient: 'from-sky-500 to-blue-500',
+    coverGradient: 'to-blue-200',
     capabilities: [
       {
         id: 'cap-11-1',
@@ -508,7 +508,7 @@ export const mockSkills: Skill[] = [
     tags: ['市场分析', '竞品分析', '报告'],
     version: '1.6.0',
     protocol: 'api',
-    coverGradient: 'from-orange-500 to-red-500',
+    coverGradient: 'to-red-200',
     capabilities: [
       {
         id: 'cap-12-1',
@@ -546,7 +546,7 @@ export const mockSkills: Skill[] = [
     tags: ['文档', '演讲稿', '技术写作'],
     version: '2.1.0',
     protocol: 'mcp',
-    coverGradient: 'from-pink-500 to-rose-500',
+    coverGradient: 'to-rose-100',
     capabilities: [
       {
         id: 'cap-13-1',
@@ -585,7 +585,7 @@ export const mockSkills: Skill[] = [
     tags: ['SQL', '数据库', '查询优化'],
     version: '2.5.0',
     protocol: 'function',
-    coverGradient: 'from-cyan-500 to-blue-500',
+    coverGradient: 'to-blue-200',
     capabilities: [
       {
         id: 'cap-14-1',
@@ -634,7 +634,7 @@ export const mockSkills: Skill[] = [
     tags: ['合同', '法律', '风险识别'],
     version: '1.3.0',
     protocol: 'mcp',
-    coverGradient: 'from-slate-500 to-zinc-600',
+    coverGradient: 'to-green-200',
     capabilities: [
       {
         id: 'cap-15-1',

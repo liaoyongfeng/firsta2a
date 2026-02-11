@@ -123,7 +123,7 @@ export default function AgentProfilePage() {
                     className="flex items-center gap-4 rounded-xl bg-white p-4 shadow-sm transition-all hover:shadow-md"
                   >
                     <div
-                      className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br ${skill.coverGradient} text-xl`}
+                      className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-gradient-to-tr ${skill.coverGradient} text-xl`}
                     >
                       {skill.category === '写作'
                         ? '✍️'

@@ -142,7 +142,7 @@ export default function SkillDetailPage() {
           <div className="flex-1">
             {/* Cover */}
             <div
-              className={`mb-6 flex h-52 items-center justify-center rounded-2xl bg-gradient-to-br ${skill.coverGradient}`}
+              className={`mb-6 flex h-52 items-center justify-center rounded-2xl bg-gradient-to-tr ${skill.coverGradient}`}
             >
               <span className="text-7xl opacity-80">
                 {skill.category === '写作'
