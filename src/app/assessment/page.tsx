@@ -40,7 +40,7 @@ export default function DashboardPage() {
   const [softMemory, setSoftMemory] = useState<SoftMemory | null>(null);
 
   useEffect(() => {
-    fetchUserInfo();
+    // fetchUserInfo();
   }, []);
 
   const fetchUserInfo = async () => {
@@ -85,6 +85,16 @@ export default function DashboardPage() {
     await fetch('/api/auth/logout', { method: 'POST' });
     router.push('/');
   };
+
+   return (
+    <div className="min-h-screen bg-zinc-50 font-sans">
+      <main className="mx-auto max-w-4xl px-6 py-30">
+        <div className="flex-1">
+          <h2 className="mb-2 text-2xl font-semibold text-center text-zinc-900">功能开发中</h2>
+        </div>
+      </main>
+    </div>
+  );
 
   if (loading) {
     return (
