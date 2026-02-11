@@ -116,7 +116,7 @@ export default function AcademyDashboard() {
           {/* 创建 Agent 按钮 - 固定定位在右上角 */}
           <Link
             href="/academy/create-agent"
-            className={`absolute right-6 top-6 inline-flex items-center gap-1 rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white transition-all hover:bg-indigo-700 ${
+            className={`absolute right-6 top-6 inline-flex items-center gap-1 rounded-lg bg-blue-500 px-4 py-2 text-sm font-medium text-white transition-all hover:bg-indigo-700 ${
               activeTab === 'agents' ? 'opacity-100 visible' : 'opacity-0 invisible'
             }`}
           >
