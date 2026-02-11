@@ -44,3 +44,7 @@ next-env.d.ts
 .secondme/
 
 /src/generated/prisma
+
+
+# documentation
+docs/
