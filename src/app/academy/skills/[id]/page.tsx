@@ -247,7 +247,7 @@ export default function SkillDetailPage() {
               {/* Agent Selector */}
               <div className="mb-4">
                 <label className="mb-1.5 block text-sm font-medium text-zinc-700">
-                  安装到哪个 Agent
+                  送给哪个 Agent
                 </label>
                 <select
                   value={selectedAgent}
@@ -280,7 +280,7 @@ export default function SkillDetailPage() {
                   onClick={handleInstall}
                   className="mb-4 w-full rounded-lg bg-indigo-600 py-3 text-sm font-semibold text-white transition-colors hover:bg-indigo-700"
                 >
-                  购买并安装
+                  {skill.protocol === 'business' ? '加入人脉' : '获取技能'}
                 </button>
               )}
 

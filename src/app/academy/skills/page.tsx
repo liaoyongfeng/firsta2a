@@ -23,7 +23,7 @@ export default function SkillMarketPage() {
         <div className="mb-6">
           <h1 className="mb-1 text-2xl font-bold text-zinc-900">技能市场</h1>
           <p className="text-sm text-zinc-500">
-            为你的 Agent 安装合适的技能工具，即装即用
+            总有一款技能适合你
           </p>
         </div>
 
