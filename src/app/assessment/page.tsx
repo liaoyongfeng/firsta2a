@@ -389,8 +389,7 @@ export default function AssessmentPage() {
               <>
                 <Sparkles className="w-4 h-4 animate-pulse" />
                 <span>
-                  评估进行中 ({currentMessageIndex + (isTyping ? 0 : 1)}/
-                  {scenario.messages.length})
+                  评估进行中 ...
                 </span>
               </>
             )}

@@ -102,7 +102,7 @@ export const mockSkills: Skill[] = [
   },
   {
     id: 'skill-3',
-    title: 'Python 代码助手',
+    title: 'Python专家',
     description: '提供Python代码生成、调试、优化和代码审查能力的MCP工具，覆盖从基础语法到高级设计模式。',
     category: '编程',
     difficulty: 'intermediate',

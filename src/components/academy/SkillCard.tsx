@@ -51,7 +51,7 @@ export default function SkillCard({ skill }: { skill: Skill }) {
           <div className="flex items-center justify-between">
             <StarRating rating={skill.rating} />
             <span className="text-xs text-zinc-400">
-              {skill.installCount.toLocaleString()} 次安装
+              {skill.installCount.toLocaleString()} 次{skill.protocol === 'business' ? '咨询' : '调用'}
             </span>
           </div>
         </div>

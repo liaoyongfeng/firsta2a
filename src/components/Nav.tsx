@@ -31,6 +31,12 @@ export default function Nav() {
     setCurrentRole(role);
   }, []);
 
+  useEffect(() => {
+    if (pathname === '/academy' && currentRole === 'provider') {
+      setCurrentRole('consumer');
+    }
+  }, [pathname]);
+
   // 点击外部关闭下拉菜单
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
