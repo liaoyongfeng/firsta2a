@@ -4,7 +4,7 @@ const SECONDME_OAUTH_URL = process.env.SECONDME_OAUTH_URL || 'https://go.second.
 // const SECONDME_AUTH_URL = process.env.SECONDME_AUTH_URL || "https://app.mindos.com"
 
 const SECONDME_CLIENT_ID = process.env.SECONDME_CLIENT_ID || '';
-const SECONDME_REDIRECT_URI = process.env.SECONDME_REDIRECT_URI || 'http://localhost:3000/api/auth/callback';
+const SECONDME_REDIRECT_URI = process.env.SECONDME_REDIRECT_URI || 'https://www.hzshumeng.com/api/auth/callback';
 const SECONDME_TOKEN_ENDPOINT = process.env.SECONDME_TOKEN_ENDPOINT || 'https://app.mindos.com/gate/lab/api/oauth/token';
 
 export interface OAuthState {

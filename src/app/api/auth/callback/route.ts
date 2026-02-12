@@ -7,13 +7,14 @@ export async function GET(request: NextRequest) {
   const code = searchParams.get('code');
   const state = searchParams.get('state');
   const error = searchParams.get('error');
+  const siteBaseUrl = process.env.SITE_REDIRECT_URI || 'https://www.hzshumeng.com';
 
   console.log('[OAuth Callback] Received:', { code: code ? '***' : null, state, error });
 
   // 检查是否有错误
   if (error) {
     console.error('[OAuth Callback] Error from SecondMe:', error);
-    return NextResponse.redirect(new URL('/?error=' + encodeURIComponent(error), request.url));
+    return NextResponse.redirect(new URL(siteBaseUrl +'/?error=' + encodeURIComponent(error), request.url));
   }
 
   // 验证 state 参数
@@ -24,12 +25,12 @@ export async function GET(request: NextRequest) {
 
   if (!state || state !== savedState) {
     console.error('[OAuth Callback] State validation failed');
-    return NextResponse.redirect(new URL('/?error=invalid_state', request.url));
+    return NextResponse.redirect(new URL(siteBaseUrl + '/?error=invalid_state', request.url));
   }
 
   if (!code) {
     console.error('[OAuth Callback] No code received');
-    return NextResponse.redirect(new URL('/?error=no_code', request.url));
+    return NextResponse.redirect(new URL(siteBaseUrl + '/?error=no_code', request.url));
   }
 
   try {
@@ -80,7 +81,7 @@ export async function GET(request: NextRequest) {
     );
 
     // 清除 oauth_state cookie
-    const response = NextResponse.redirect(new URL('/', request.url));
+    const response = NextResponse.redirect(new URL(siteBaseUrl + '/', request.url));
     response.cookies.delete('oauth_state');
 
     console.log('[OAuth Callback] Success! Redirecting to dashboard');
@@ -88,7 +89,7 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error('[OAuth Callback] Error:', error);
     const errorMessage = error instanceof Error ? error.message : '未知错误';
-    return NextResponse.redirect(new URL('/?error=' + encodeURIComponent(errorMessage), request.url));
+    return NextResponse.redirect(new URL(siteBaseUrl + '/?error=' + encodeURIComponent(errorMessage), request.url));
   }
 }
 
